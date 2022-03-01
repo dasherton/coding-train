@@ -12,6 +12,7 @@ class Node
 
 	show()
 	{
+		noFill();
 		strokeWeight(2);
 		rect(this.x * nodeWidth, this.y * nodeHeight, nodeWidth, nodeHeight);
 	}

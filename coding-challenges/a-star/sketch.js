@@ -9,8 +9,8 @@ var closedSet = []; // Stores evaluated nodes
 
 var grid = new Array(numCols);
 
-var start;
-var end;
+var startNode;
+var endNode;
 
 function setup()
 {
@@ -34,15 +34,15 @@ function setup()
   }
 
   // Pick appropriate start and end nodes
-  start = grid[0][0];
-  end = grid[numCols-1][numRows-1];
+  startNode = grid[0][0];
+  endNode = grid[numCols-1][numRows-1];
 
-  openSet.push(start);
+  openSet.push(startNode);
 }
 
 function draw()
 {
-  background(0);
+  background(255);
 
   for (var col = 0; col < numCols; ++col)
   {
@@ -51,4 +51,12 @@ function draw()
       grid[col][row].show();
     }
   }
+
+  // Draw start node in green
+  fill(0, 255, 0);
+  rect(startNode.x * nodeWidth, startNode.y * nodeHeight, nodeWidth, nodeHeight);
+
+  // Draw end node in red
+  fill(255, 0, 0);
+  rect(endNode.x * nodeWidth, endNode.y * nodeHeight, nodeWidth, nodeHeight);
 }
