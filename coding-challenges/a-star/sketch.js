@@ -1,6 +1,9 @@
 const numRows = 5;
 const numCols = 5;
 
+var nodeWidth;
+var nodeHeight;
+
 var openSet = []; // Stored nodes pending evaluation
 var closedSet = []; // Stores all evaluated nodes
 
@@ -11,8 +14,12 @@ var end;
 
 function setup()
 {
-  createCanvas(500, 500);
+  createCanvas(numCols * 100, numRows * 100);
 
+  nodeWidth = width / numCols;
+  nodeHeight = height / numRows;
+
+  // Create column-wise 2D grid
   for (var col = 0; col < numCols; ++col)
   {
     grid[col] = new Array(numRows);
@@ -22,7 +29,7 @@ function setup()
   {
     for (var row = 0; row < numRows; ++row)
     {
-      grid[col][row] = new Node();
+      grid[col][row] = new Node(col, row);
     }
   }
 
@@ -36,14 +43,12 @@ function setup()
 function draw()
 {
   background(0);
-  translate((width/numCols)/2, (height/numRows)/2);
-  
+
   for (var col = 0; col < numCols; ++col)
   {
     for (var row = 0; row < numRows; ++row)
     {
-      fill(255, 0, 0);
-      ellipse(col * (width/numCols), row * (height/numRows), 10, 10);
+      grid[col][row].show();
     }
   }
 }
