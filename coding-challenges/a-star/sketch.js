@@ -4,8 +4,8 @@ const numCols = 5;
 var nodeWidth;
 var nodeHeight;
 
-var openSet = []; // Stored nodes pending evaluation
-var closedSet = []; // Stores all evaluated nodes
+var openSet = []; // Stores nodes pending evaluation
+var closedSet = []; // Stores evaluated nodes
 
 var grid = new Array(numCols);
 
