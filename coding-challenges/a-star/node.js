@@ -10,9 +10,9 @@ class Node
 		this.h = 0;
 	}
 
-	show()
+	show(col)
 	{
-		noFill();
+		fill(col);
 		strokeWeight(2);
 		rect(this.x * nodeWidth, this.y * nodeHeight, nodeWidth, nodeHeight);
 	}

@@ -48,15 +48,17 @@ function draw()
   {
     for (var row = 0; row < numRows; ++row)
     {
-      grid[col][row].show();
+      grid[col][row].show(color(255));
     }
   }
 
-  // Draw start node in green
-  fill(0, 255, 0);
-  rect(startNode.x * nodeWidth, startNode.y * nodeHeight, nodeWidth, nodeHeight);
+  for (var i = 0; i < openSet.length; ++i)
+  {
+    console.log(i);
+    openSet[i].show(color('green'));
+  }
 
   // Draw end node in red
-  fill(255, 0, 0);
+  fill(color('red'));
   rect(endNode.x * nodeWidth, endNode.y * nodeHeight, nodeWidth, nodeHeight);
 }
