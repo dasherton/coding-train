@@ -13,7 +13,6 @@ class Node
 	show(col)
 	{
 		fill(col);
-		strokeWeight(2);
-		rect(this.x * nodeWidth, this.y * nodeHeight, nodeWidth, nodeHeight);
+		rect(this.x * nodeWidth, this.y * nodeHeight, nodeWidth - 1, nodeHeight - 1);
 	}
 }

@@ -54,11 +54,11 @@ function draw()
 
   for (var i = 0; i < openSet.length; ++i)
   {
-    console.log(i);
-    openSet[i].show(color('green'));
+    openSet[i].show(color(0, 255, 0, 100));
   }
 
-  // Draw end node in red
-  fill(color('red'));
-  rect(endNode.x * nodeWidth, endNode.y * nodeHeight, nodeWidth, nodeHeight);
+  for (var i = 0; i < closedSet.length; ++i)
+  {
+    closedSet[i].show(color(255, 0, 0, 100));
+  }
 }
