@@ -12,6 +12,17 @@ var grid = new Array(numCols);
 var startNode;
 var endNode;
 
+function removeFromArray(arr, element)
+{
+  for (var i = arr.length - 1; i >= 0; i--)
+  {
+    if (element === arr[i])
+    {
+      arr.slice(i, 1);
+    }
+  }
+}
+
 function setup()
 {
   createCanvas(numCols * 100, numRows * 100);
@@ -42,7 +53,31 @@ function setup()
 
 function draw()
 {
-  background(255);
+  if (openSet.length > 0)
+  {
+    var lowestIndex = 0;
+    for (var i = 0; i < openSet.length; ++i)
+    {
+      if (openSet[i].f < openSet[lowestIndex].f)
+      {
+        lowestIndex = i;
+      }
+    }
+    var current = openSet[lowestIndex];
+
+    if (current === endNode)
+    {
+      console.log("Reached target");
+      noLoop();
+    }
+
+    removeFromArray(openSet, current);
+    closedSet.push(current);
+  }
+  else
+  {
+    // No nodes left to consider
+  }
 
   for (var col = 0; col < numCols; ++col)
   {
