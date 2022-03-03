@@ -36,11 +36,21 @@ function setup()
     grid[col] = new Array(numRows);
   }
 
+  // Create nodes in the grid
   for (var col = 0; col < numCols; ++col)
   {
     for (var row = 0; row < numRows; ++row)
     {
       grid[col][row] = new Node(col, row);
+    }
+  }
+
+  // Add neightbours to each spot in grid
+  for (var col = 0; col < numCols; ++col)
+  {
+    for (var row = 0; row < numRows; ++row)
+    {
+      grid[col][row].addNeighbours(grid);
     }
   }
 
