@@ -113,7 +113,7 @@ function draw()
         }
 
         neighbour.h = heuristic(neighbour, endNode);
-        neighbour.f = neighbour.g = neighbour.h;
+        neighbour.f = neighbour.g + neighbour.h;
       }
     }
   }
