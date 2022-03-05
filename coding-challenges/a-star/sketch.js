@@ -1,5 +1,5 @@
-const numRows = 25;
-const numCols = 25;
+const numRows = 10;
+const numCols = 10;
 
 var nodeWidth;
 var nodeHeight;
@@ -35,6 +35,19 @@ function evaluatePath(startingNode)
     path.push(tmp.previous);
     tmp = tmp.previous;
   }
+}
+
+function getNodeWithLowestFScore(set)
+{
+  var lowestIndex = 0;
+  for (var i = 0; i < set.length; ++i)
+  {
+    if (set[i].f < set[lowestIndex].f)
+    {
+      lowestIndex = i;
+    }
+  }
+  return set[lowestIndex];
 }
 
 function setup()
@@ -85,15 +98,7 @@ function draw()
 {
   if (openSet.length > 0)
   {
-    var lowestIndex = 0;
-    for (var i = 0; i < openSet.length; ++i)
-    {
-      if (openSet[i].f < openSet[lowestIndex].f)
-      {
-        lowestIndex = i;
-      }
-    }
-    var current = openSet[lowestIndex];
+    var current = getNodeWithLowestFScore(openSet);
 
     if (current === endNode)
     {
