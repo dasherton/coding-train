@@ -5,9 +5,9 @@ class Node
 		this.i = i;
 		this.j = j;
 
-		this.f = 0;
-		this.g = 0;
-		this.h = 0;
+		this.f = 0; // Result of this.g + this.h
+		this.g = 0; // Cost of the path from the start node to n
+		this.h = 0; // Estimate cost of the cheapest path from n to the goal
 
 		this.neighbours = [];
 	}

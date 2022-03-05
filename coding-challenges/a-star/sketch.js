@@ -1,5 +1,5 @@
-const numRows = 5;
-const numCols = 5;
+const numRows = 25;
+const numCols = 25;
 
 var nodeWidth;
 var nodeHeight;
@@ -16,16 +16,16 @@ function removeFromArray(arr, element)
 {
   for (var i = arr.length - 1; i >= 0; i--)
   {
-    if (element === arr[i])
+    if (arr[i] === element)
     {
-      arr.slice(i, 1);
+      arr.splice(i, 1);
     }
   }
 }
 
 function setup()
 {
-  createCanvas(numCols * 100, numRows * 100);
+  createCanvas(500, 500);
 
   nodeWidth = width / numCols;
   nodeHeight = height / numRows;
@@ -61,6 +61,12 @@ function setup()
   openSet.push(startNode);
 }
 
+function heuristic(node1, node2)
+{
+  //return dist(node1.i, node1.j, node2.i, node2.j); // Euclidian distance
+  return abs(node1.i-node2.i) + abs(node1.j-node2.j); // Manhattan distance
+}
+
 function draw()
 {
   if (openSet.length > 0)
@@ -83,10 +89,37 @@ function draw()
 
     removeFromArray(openSet, current);
     closedSet.push(current);
+
+    var neighbours = current.neighbours;
+    for (var i = 0; i < neighbours.length; ++i)
+    {
+      var neighbour = neighbours[i];
+
+      if (!closedSet.includes(neighbour))
+      {
+        var tempG = current.g + 1; // Each neighbour is considered only 1 space away
+
+        if (openSet.includes(neighbour))
+        {
+          if (tempG < neighbour.g)
+          {
+            neighbour.g = tempG;
+          }
+        }
+        else
+        {
+          neighbour.g = tempG;
+          openSet.push(neighbour);
+        }
+
+        neighbour.h = heuristic(neighbour, endNode);
+        neighbour.f = neighbour.g = neighbour.h;
+      }
+    }
   }
   else
   {
-    // No nodes left to consider
+    noLoop(); // No nodes left to consider
   }
 
   for (var col = 0; col < numCols; ++col)
