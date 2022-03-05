@@ -15,8 +15,33 @@ class Node
 
 	show(col)
 	{
-		fill(col);
-		rect(this.i * nodeWidth, this.j * nodeHeight, nodeWidth - 1, nodeHeight - 1);
+		push();
+			translate(this.i * nodeWidth, this.j * nodeHeight);
+
+			// Draw node border
+			fill(col);
+			rect(0, 0, nodeWidth - 1, nodeHeight - 1);
+
+			// Draw node member data
+			fill(0);
+			textSize(15);
+			text(
+				"g=" + this.g,
+				(nodeWidth/2) - (textSize()/2),
+				(nodeHeight/2)
+			);
+			text(
+				"f=" + this.f,
+				(nodeWidth/2) - (textSize()/2),
+				(nodeHeight/2) + textSize() + 3
+			);
+			text(
+				"h=" + this.h,
+				(nodeWidth/2) - (textSize()/2),
+				(nodeHeight/2) + (textSize() * 2) + 3
+			);
+
+		pop();
 	}
 
 	addNeighbours(grid)
