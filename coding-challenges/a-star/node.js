@@ -10,6 +10,7 @@ class Node
 		this.h = 0; // Estimate cost of the cheapest path from n to the goal
 
 		this.neighbours = [];
+		this.previous = undefined; // The node from which this node came
 	}
 
 	show(col)

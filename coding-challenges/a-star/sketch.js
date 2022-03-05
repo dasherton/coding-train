@@ -12,6 +12,8 @@ var grid = new Array(numCols);
 var startNode;
 var endNode;
 
+var path; // The final node path
+
 function removeFromArray(arr, element)
 {
   for (var i = arr.length - 1; i >= 0; i--)
@@ -20,6 +22,18 @@ function removeFromArray(arr, element)
     {
       arr.splice(i, 1);
     }
+  }
+}
+
+function evaluatePath(startingNode)
+{
+  path = [];
+  var tmp = startingNode;
+  path.push(tmp);
+  while (tmp.previous)
+  {
+    path.push(tmp.previous);
+    tmp = tmp.previous;
   }
 }
 
@@ -114,12 +128,16 @@ function draw()
 
         neighbour.h = heuristic(neighbour, endNode);
         neighbour.f = neighbour.g + neighbour.h;
+        neighbour.previous = current;
       }
     }
+
+    evaluatePath(current);
   }
   else
   {
-    noLoop(); // No nodes left to consider
+    console.log("Could not reach target");
+    noLoop();
   }
 
   for (var col = 0; col < numCols; ++col)
@@ -132,11 +150,16 @@ function draw()
 
   for (var i = 0; i < openSet.length; ++i)
   {
-    openSet[i].show(color(0, 255, 0, 100));
+    openSet[i].show(color(0, 255, 0));
   }
 
   for (var i = 0; i < closedSet.length; ++i)
   {
-    closedSet[i].show(color(255, 0, 0, 100));
+    closedSet[i].show(color(255, 0, 0));
+  }
+
+  for (var i = 0; i < path.length; ++i)
+  {
+    path[i].show(color(0, 0, 255));
   }
 }
