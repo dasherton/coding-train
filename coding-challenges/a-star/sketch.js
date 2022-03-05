@@ -1,5 +1,5 @@
-const numRows = 10;
-const numCols = 10;
+const numRows = 5;
+const numCols = 5;
 
 var nodeWidth;
 var nodeHeight;
@@ -13,6 +13,14 @@ var startNode;
 var endNode;
 
 var path; // The final node path
+
+function keyPressed()
+{
+  if (keyCode === RIGHT_ARROW)
+  {
+    draw();
+  }
+}
 
 function removeFromArray(arr, element)
 {
@@ -53,6 +61,7 @@ function getNodeWithLowestFScore(set)
 function setup()
 {
   createCanvas(500, 500);
+  noLoop();
 
   nodeWidth = width / numCols;
   nodeHeight = height / numRows;
