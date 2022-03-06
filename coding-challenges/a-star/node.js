@@ -58,6 +58,17 @@ class Node
 		pop();
 	}
 
+	highlight(col)
+	{
+		push();
+			translate(this.i * nodeWidth, this.j * nodeHeight);
+			noFill();
+			stroke(col);
+			strokeWeight(10);
+			rect(5, 5, nodeWidth-10, nodeHeight-10);
+		pop();
+	}
+
 	addNeighbours(grid)
 	{
 		if (this.i > 0) // Add node to the west

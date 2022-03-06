@@ -188,4 +188,7 @@ function draw()
   {
     path[i].show(color(0, 0, 255, 100));
   }
+
+  startNode.highlight(color('green'));
+  endNode.highlight(color('yellow'));
 }
