@@ -150,7 +150,6 @@ function draw()
   }
   else
   {
-    console.log("Could not reach target");
     noLoop();
   }
 

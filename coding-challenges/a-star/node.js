@@ -31,12 +31,12 @@ class Node
 				(nodeHeight/2)
 			);
 			text(
-				"f=" + this.f,
+				"h=" + this.h,
 				(nodeWidth/2) - (textSize()/2),
-				(nodeHeight/2) + textSize() + 3
+				(nodeHeight/2) + (textSize()) + 3
 			);
 			text(
-				"h=" + this.h,
+				"f=" + this.f,
 				(nodeWidth/2) - (textSize()/2),
 				(nodeHeight/2) + (textSize() * 2) + 3
 			);
