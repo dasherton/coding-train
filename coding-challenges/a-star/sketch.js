@@ -60,6 +60,11 @@ function getNodeWithLowestFScore(set)
   return set[lowestIndex];
 }
 
+function isValidMove(node)
+{
+  return !closedSet.includes(node) && !node.isWall;
+}
+
 function setup()
 {
   createCanvas(500, 500);
@@ -83,7 +88,7 @@ function setup()
     }
   }
 
-  // Add neightbours to each spot in grid
+  // Add neighbours to each spot in grid
   for (var col = 0; col < numCols; ++col)
   {
     for (var row = 0; row < numRows; ++row)
@@ -129,7 +134,7 @@ function draw()
     {
       var neighbour = neighbours[i];
 
-      if (!closedSet.includes(neighbour) && !neighbour.isWall)
+      if (isValidMove(neighbour))
       {
         var tempG = current.g + 1; // Each neighbour is considered only 1 space away
 
@@ -156,6 +161,7 @@ function draw()
   }
   else
   {
+    console.log("No solution");
     noLoop();
     finished = true;
   }
