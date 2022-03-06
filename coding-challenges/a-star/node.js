@@ -9,8 +9,14 @@ class Node
 		this.g = 0; // Cost of the path from the start node to n
 		this.h = 0; // Estimate cost of the cheapest path from n to the goal
 
+		this.isWall = false;
 		this.neighbours = [];
 		this.previous = undefined; // The node from which this node came
+
+		if (random(1) < 0.3)
+		{
+			this.isWall = true;
+		}
 	}
 
 	show(col)
@@ -18,8 +24,16 @@ class Node
 		push();
 			translate(this.i * nodeWidth, this.j * nodeHeight);
 
+			if (this.isWall)
+			{
+				fill(0);
+			}
+			else
+			{
+				fill(col);
+			}
+
 			// Draw node border
-			fill(col);
 			rect(0, 0, nodeWidth - 1, nodeHeight - 1);
 
 			// Draw node member data

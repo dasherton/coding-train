@@ -94,7 +94,10 @@ function setup()
 
   // Pick appropriate start and end nodes
   startNode = grid[0][0];
-  endNode = grid[numCols-1][3];
+  endNode = grid[numCols-1][numRows-1];
+
+  startNode.isWall = false;
+  endNode.isWall = false;
 
   openSet.push(startNode);
 }
@@ -126,7 +129,7 @@ function draw()
     {
       var neighbour = neighbours[i];
 
-      if (!closedSet.includes(neighbour))
+      if (!closedSet.includes(neighbour) && !neighbour.isWall)
       {
         var tempG = current.g + 1; // Each neighbour is considered only 1 space away
 
