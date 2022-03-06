@@ -14,9 +14,11 @@ var endNode;
 
 var path; // The final node path
 
+var finished = false;
+
 function keyPressed()
 {
-  if (keyCode === RIGHT_ARROW)
+  if (!finished && keyCode === RIGHT_ARROW)
   {
     draw();
   }
@@ -92,7 +94,7 @@ function setup()
 
   // Pick appropriate start and end nodes
   startNode = grid[0][0];
-  endNode = grid[numCols-1][numRows-1];
+  endNode = grid[numCols-1][3];
 
   openSet.push(startNode);
 }
@@ -113,6 +115,7 @@ function draw()
     {
       console.log("Reached target");
       noLoop();
+      finished = true;
     }
 
     removeFromArray(openSet, current);
@@ -151,6 +154,7 @@ function draw()
   else
   {
     noLoop();
+    finished = true;
   }
 
   for (var col = 0; col < numCols; ++col)
