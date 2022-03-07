@@ -126,8 +126,8 @@ function draw()
       {
         continue;
       }
-      
-      var tempG = current.g + 1; // Each neighbour is considered only 1 space away
+
+      var tempG = current.g + dist(current.i, current.j, neighbour.i, neighbour.j);
       var newPath = false;
 
       if (openSet.includes(neighbour))
