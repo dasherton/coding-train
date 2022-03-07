@@ -1,5 +1,5 @@
-const numRows = 5;
-const numCols = 5;
+const numRows = 30;
+const numCols = 30;
 
 var nodeWidth;
 var nodeHeight;
@@ -13,16 +13,6 @@ var startNode;
 var endNode;
 
 var path; // The final node path
-
-var finished = false;
-
-function keyPressed()
-{
-  if (!finished && keyCode === RIGHT_ARROW)
-  {
-    draw();
-  }
-}
 
 function removeFromArray(arr, element)
 {
@@ -68,7 +58,6 @@ function isValidMove(node)
 function setup()
 {
   createCanvas(500, 500);
-  noLoop();
 
   nodeWidth = width / numCols;
   nodeHeight = height / numRows;
@@ -123,7 +112,6 @@ function draw()
     {
       console.log("Reached target");
       noLoop();
-      finished = true;
     }
 
     removeFromArray(openSet, current);
@@ -169,7 +157,6 @@ function draw()
   {
     console.log("No solution");
     noLoop();
-    finished = true;
   }
 
   for (var col = 0; col < numCols; ++col)
