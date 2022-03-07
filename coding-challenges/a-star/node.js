@@ -87,5 +87,21 @@ class Node
 		{
 			this.neighbours.push(grid[this.i][this.j+1]);
 		}
+		if (this.i > 0 && this.j > 0) // Add node to north-west
+		{
+			this.neighbours.push(grid[this.i-1][this.j-1]);
+		}
+		if (this.i < numCols - 1 && this.j > 0) // Add node to north-east
+		{
+			this.neighbours.push(grid[this.i+1][this.j-1]);
+		}
+		if (this.i < 0 && this.j < numRows - 1) // Add node to south-west
+		{
+			this.neighbours.push(grid[this.i-1][this.j+1]);
+		}
+		if (this.i < numCols - 1 && this.j < numRows - 1) // Add node to south-east
+		{
+			this.neighbours.push(grid[this.i+1][this.j+1]);
+		}
 	}
 }

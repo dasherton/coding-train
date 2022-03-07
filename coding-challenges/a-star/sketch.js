@@ -186,7 +186,7 @@ function draw()
 
   for (var i = 0; i < path.length; ++i)
   {
-    path[i].show(color(0, 0, 255, 100));
+    path[i].show(color(0, 0, 255));
   }
 
   startNode.highlight(color('green'));
