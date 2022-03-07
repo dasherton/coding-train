@@ -122,32 +122,34 @@ function draw()
     {
       var neighbour = neighbours[i];
 
-      if (isValidMove(neighbour))
+      if (!isValidMove(neighbour))
       {
-        var tempG = current.g + 1; // Each neighbour is considered only 1 space away
-        var newPath = false;
+        continue;
+      }
+      
+      var tempG = current.g + 1; // Each neighbour is considered only 1 space away
+      var newPath = false;
 
-        if (openSet.includes(neighbour))
+      if (openSet.includes(neighbour))
+      {
+        if (tempG < neighbour.g)
         {
-          if (tempG < neighbour.g)
-          {
-            neighbour.g = tempG;
-            newPath = true;
-          }
-        }
-        else
-        {
-          newPath = true;
           neighbour.g = tempG;
-          openSet.push(neighbour);
+          newPath = true;
         }
+      }
+      else
+      {
+        newPath = true;
+        neighbour.g = tempG;
+        openSet.push(neighbour);
+      }
 
-        if (newPath)
-        {
-          neighbour.h = heuristic(neighbour, endNode);
-          neighbour.f = neighbour.g + neighbour.h;
-          neighbour.previous = current;
-        }
+      if (newPath)
+      {
+        neighbour.h = heuristic(neighbour, endNode);
+        neighbour.f = neighbour.g + neighbour.h;
+        neighbour.previous = current;
       }
     }
 
