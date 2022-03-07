@@ -38,10 +38,9 @@ class Node
 	{
 		push();
 			translate(this.i * nodeWidth, this.j * nodeHeight);
-			noFill();
-			stroke(col);
-			strokeWeight(10);
-			rect(5, 5, nodeWidth-10, nodeHeight-10);
+			fill(col);
+			noStroke();
+			ellipse(nodeWidth/2, nodeHeight/2, nodeWidth*0.7, nodeHeight*0.7);
 		pop();
 	}
 
