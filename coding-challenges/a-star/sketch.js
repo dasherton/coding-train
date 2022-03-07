@@ -149,6 +149,7 @@ function draw()
         }
         else
         {
+          newPath = true;
           neighbour.g = tempG;
           openSet.push(neighbour);
         }

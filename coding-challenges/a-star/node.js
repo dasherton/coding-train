@@ -24,37 +24,13 @@ class Node
 		push();
 			translate(this.i * nodeWidth, this.j * nodeHeight);
 
-			if (this.isWall)
-			{
+			if (this.isWall) {
 				fill(0);
-			}
-			else
-			{
+			} else {
 				fill(col);
 			}
 
-			// Draw node border
 			rect(0, 0, nodeWidth - 1, nodeHeight - 1);
-
-			// Draw node member data
-			fill(0);
-			textSize(15);
-			text(
-				"g=" + this.g,
-				(nodeWidth/2) - (textSize()/2),
-				(nodeHeight/2)
-			);
-			text(
-				"h=" + this.h,
-				(nodeWidth/2) - (textSize()/2),
-				(nodeHeight/2) + (textSize()) + 3
-			);
-			text(
-				"f=" + this.f,
-				(nodeWidth/2) - (textSize()/2),
-				(nodeHeight/2) + (textSize() * 2) + 3
-			);
-
 		pop();
 	}
 
