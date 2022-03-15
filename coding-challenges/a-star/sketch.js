@@ -14,6 +14,8 @@ var endNode;
 
 var path; // The final node path
 
+var nosolution = false;
+
 function removeFromArray(arr, element)
 {
   for (var i = arr.length - 1; i >= 0; i--)
@@ -165,6 +167,7 @@ function draw()
   else
   {
     console.log("No solution");
+    nosolution = true;
     noLoop();
   }
 
@@ -182,7 +185,11 @@ function draw()
   push();
     translate(nodeWidth/2, nodeHeight/2);
     noFill();
-    stroke(color('green'));
+    if (nosolution) {
+      stroke(color('red'));
+    } else {
+      stroke(color('green'));
+    }
     strokeWeight(5);
     beginShape();
       for (var i = 0; i < path.length; ++i)
