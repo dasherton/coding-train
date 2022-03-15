@@ -177,6 +177,7 @@ function draw()
     for (var row = 0; row < numRows; ++row)
     {
       grid[col][row].show(color(255));
+      grid[col][row].connectWalls(grid);      
     }
   }
 

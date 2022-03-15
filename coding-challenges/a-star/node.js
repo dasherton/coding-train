@@ -38,6 +38,29 @@ class Node
 		pop();
 	}
 
+	connectWalls(grid)
+	{
+		if (!this.isWall)
+		{
+			return;
+		}
+
+		push();
+			strokeWeight(5);
+			stroke(0);
+			translate(this.i * nodeWidth + nodeWidth/2, this.j * nodeHeight + nodeHeight/2);
+
+			if (this.i > 0 && grid[this.i-1][this.j].isWall) // Connect wall to the west
+			{
+				line(0, 0, -nodeWidth, 0);
+			}
+			if (this.j > 0 && grid[this.i][this.j-1].isWall) // Add node to the north
+			{
+				line(0, 0, 0, -nodeHeight);
+			}
+		pop();
+	}
+
 	addNeighbours(grid)
 	{
 		if (this.i > 0) // Add node to the west
