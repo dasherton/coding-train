@@ -24,14 +24,12 @@ class Node
 		push();
 			stroke(0);
 			translate(this.i * nodeWidth, this.j * nodeHeight);
-
 			if (this.isWall) {
 				fill(0);
 			} else {
 				fill(col);
 			}
-
-			rect(0, 0, nodeWidth - 1, nodeHeight - 1);
+			ellipse(nodeWidth/2, nodeHeight/2, nodeWidth*0.5, nodeHeight*0.5);
 		pop();
 	}
 

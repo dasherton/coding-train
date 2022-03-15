@@ -104,6 +104,8 @@ function heuristic(node1, node2)
 
 function draw()
 {
+  background(255);
+  
   if (openSet.length > 0)
   {
     var current = getNodeWithLowestFScore(openSet);
@@ -169,25 +171,14 @@ function draw()
     }
   }
 
-  for (var i = 0; i < openSet.length; ++i)
-  {
-    openSet[i].show(color(0, 255, 0, 100));
-  }
-
-  for (var i = 0; i < closedSet.length; ++i)
-  {
-    closedSet[i].show(color(255, 0, 0, 100));
-  }
-
-  for (var i = 0; i < path.length; ++i)
-  {
-    path[i].show(color(0, 0, 255));
-  }
+  startNode.highlight(color('green'));
+  endNode.highlight(color('yellow'));
 
   push();
     translate(nodeWidth/2, nodeHeight/2);
     noFill();
-    stroke(255);
+    stroke(color('green'));
+    strokeWeight(5);
     beginShape();
       for (var i = 0; i < path.length; ++i)
       {
@@ -195,7 +186,4 @@ function draw()
       }
     endShape();
   pop();
-
-  startNode.highlight(color('green'));
-  endNode.highlight(color('yellow'));
 }
