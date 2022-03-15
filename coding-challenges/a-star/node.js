@@ -34,7 +34,7 @@ class Node
 			translate(this.i * nodeWidth, this.j * nodeHeight);
 			fill(col);
 			noStroke();
-			ellipse(nodeWidth/2, nodeHeight/2, nodeWidth*0.7, nodeHeight*0.7);
+			ellipse(nodeWidth/2, nodeHeight/2, nodeWidth*0.5, nodeHeight*0.5);
 		pop();
 	}
 
