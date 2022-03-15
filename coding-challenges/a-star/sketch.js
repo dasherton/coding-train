@@ -73,7 +73,12 @@ function setup()
   {
     for (var row = 0; row < numRows; ++row)
     {
-      grid[col][row] = new Node(col, row);
+      let isWall = false;
+      if (random(1) < 0.3)
+		  {
+			  isWall = true;
+		  }
+      grid[col][row] = new Node(col, row, isWall);
     }
   }
 

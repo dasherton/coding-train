@@ -1,6 +1,6 @@
 class Node
 {
-	constructor(i, j)
+	constructor(i, j, isWall)
 	{
 		this.i = i;
 		this.j = j;
@@ -9,14 +9,9 @@ class Node
 		this.g = 0; // Cost of the path from the start node to n
 		this.h = 0; // Estimate cost of the cheapest path from n to the goal
 
-		this.isWall = false;
+		this.isWall = isWall;
 		this.neighbours = [];
 		this.previous = undefined; // The node from which this node came
-
-		if (random(1) < 0.3)
-		{
-			this.isWall = true;
-		}
 	}
 
 	show(col)
