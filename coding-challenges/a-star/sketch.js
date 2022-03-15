@@ -1,5 +1,5 @@
-const numRows = 30;
-const numCols = 30;
+const numRows = 10;
+const numCols = 10;
 
 var nodeWidth;
 var nodeHeight;
@@ -183,6 +183,18 @@ function draw()
   {
     path[i].show(color(0, 0, 255));
   }
+
+  push();
+    translate(nodeWidth/2, nodeHeight/2);
+    noFill();
+    stroke(255);
+    beginShape();
+      for (var i = 0; i < path.length; ++i)
+      {
+        vertex(path[i].i * nodeWidth, path[i].j * nodeHeight);
+      }
+    endShape();
+  pop();
 
   startNode.highlight(color('green'));
   endNode.highlight(color('yellow'));

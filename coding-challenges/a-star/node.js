@@ -22,6 +22,7 @@ class Node
 	show(col)
 	{
 		push();
+			stroke(0);
 			translate(this.i * nodeWidth, this.j * nodeHeight);
 
 			if (this.isWall) {
