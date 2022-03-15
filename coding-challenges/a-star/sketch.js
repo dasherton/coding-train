@@ -110,9 +110,7 @@ function heuristic(node1, node2)
 }
 
 function draw()
-{
-  background(255);
-  
+{  
   if (openSet.length > 0)
   {
     var current = getNodeWithLowestFScore(openSet);
@@ -170,6 +168,9 @@ function draw()
     nosolution = true;
     noLoop();
   }
+
+  background(255);
+  rect(0, 0, width-1, height-1);
 
   for (var col = 0; col < numCols; ++col)
   {
