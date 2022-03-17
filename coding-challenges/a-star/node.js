@@ -14,7 +14,7 @@ class Node
 		this.previous = undefined; // The node from which this node came
 	}
 
-	show(col)
+	show()
 	{
 		push();
 			stroke(0);
@@ -22,7 +22,7 @@ class Node
 			if (this.isWall) {
 				fill(0);
 			} else {
-				fill(col);
+				fill(255);
 			}
 			ellipse(nodeWidth/2, nodeHeight/2, nodeWidth*0.5, nodeHeight*0.5);
 		pop();
