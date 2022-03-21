@@ -25,7 +25,6 @@ async function partition(arr, start, end)
   let pivotIndex = start;
   const pivotVal = arr[end];
 
-  states[pivotIndex] = PIVOT_INDEX_STATE;
   for (let i = start; i < end; ++i) {
     states[i] = CURRENT_PARTITION_STATE;
   }
