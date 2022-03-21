@@ -1,7 +1,7 @@
 let segments;
 let states = [];
 
-const SEGMENT_WIDTH = 50;
+const SEGMENT_WIDTH = 20;
 
 const DEFAULT_STATE = -1;
 const PIVOT_INDEX_STATE = 0;
@@ -14,7 +14,7 @@ async function sleep(ms)
 
 async function swap(arr, a, b)
 {
-  await sleep(2000);
+  await sleep(100);
   const tmp = arr[a];
   arr[a] = arr[b];
   arr[b] = tmp;
