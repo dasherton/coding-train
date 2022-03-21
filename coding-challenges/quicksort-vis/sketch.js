@@ -1,39 +1,45 @@
 let segments;
 let segmentWidth = 10;
 
-function swap(arr, a, b)
+async function sleep(ms)
 {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function swap(arr, a, b)
+{
+  await sleep(100);
   const tmp = arr[a];
   arr[a] = arr[b];
   arr[b] = tmp;
 }
 
-function partition(arr, start, end)
+async function partition(arr, start, end)
 {
   let pivotIndex = start;
   const pivotVal = arr[end];
   for (let i = start; i < end; ++i) {
     if (arr[i] < pivotVal) {
-      swap(arr, i, pivotIndex++);
+      await swap(arr, i, pivotIndex++);
     }
   }
-  swap(arr, end, pivotIndex);
+  await swap(arr, end, pivotIndex);
   return pivotIndex;
 }
 
-function quicksortHelper(arr, start, end)
+async function quicksortHelper(arr, start, end)
 {
   if (start >= end) {
     return;
   }
-  const index = partition(arr, start, end);
-  quicksortHelper(arr, start, index - 1);
-  quicksortHelper(arr, index + 1, end);
+  const index = await partition(arr, start, end);
+  await quicksortHelper(arr, start, index - 1);
+  await quicksortHelper(arr, index + 1, end);
 }
 
-function quicksort(arr)
+async function quicksort(arr)
 {
-  quicksortHelper(arr, 0, arr.length-1);
+  await quicksortHelper(arr, 0, arr.length-1);
 }
 
 function setup()
