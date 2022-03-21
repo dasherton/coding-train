@@ -33,8 +33,11 @@ async function quicksortHelper(arr, start, end)
     return;
   }
   const index = await partition(arr, start, end);
-  await quicksortHelper(arr, start, index - 1);
-  await quicksortHelper(arr, index + 1, end);
+
+  await Promise.all([
+      quicksortHelper(arr, start, index - 1),
+      quicksortHelper(arr, index + 1, end)
+  ]);
 }
 
 async function quicksort(arr)
