@@ -1,6 +1,7 @@
 let segments;
-let segmentWidth = 30;
 let states = [];
+
+const SEGMENT_WIDTH = 30;
 
 const DEFAULT_STATE = -1;
 const PIVOT_INDEX_STATE = 0;
@@ -68,7 +69,7 @@ async function quicksort(arr)
 function setup()
 {
   createCanvas(800, 200);
-  segments = new Array(floor(width/segmentWidth));
+  segments = new Array(floor(width/SEGMENT_WIDTH));
   for (let i = 0; i < segments.length; ++i) {
     segments[i] = random(height);
     states[i] = DEFAULT_STATE;
@@ -88,6 +89,6 @@ function draw()
     } else {
       fill(255);
     }
-    rect(i * segmentWidth, height-segments[i], segmentWidth, segments[i]);
+    rect(i * SEGMENT_WIDTH, height-segments[i], SEGMENT_WIDTH, segments[i]);
   }
 }
