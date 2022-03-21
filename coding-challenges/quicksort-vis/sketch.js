@@ -1,5 +1,10 @@
 let segments;
-let segmentWidth = 10;
+let segmentWidth = 30;
+let states = [];
+
+const DEFAULT_STATE = -1;
+const PIVOT_INDEX_STATE = 0;
+const CURRENT_PARTITION_STATE = 1;
 
 async function sleep(ms)
 {
@@ -8,7 +13,7 @@ async function sleep(ms)
 
 async function swap(arr, a, b)
 {
-  await sleep(100);
+  await sleep(200);
   const tmp = arr[a];
   arr[a] = arr[b];
   arr[b] = tmp;
@@ -18,12 +23,27 @@ async function partition(arr, start, end)
 {
   let pivotIndex = start;
   const pivotVal = arr[end];
+
+  states[pivotIndex] = PIVOT_INDEX_STATE;
+  for (let i = start; i < end; ++i) {
+    states[i] = CURRENT_PARTITION_STATE;
+  }
+
   for (let i = start; i < end; ++i) {
     if (arr[i] < pivotVal) {
-      await swap(arr, i, pivotIndex++);
+      await swap(arr, i, pivotIndex);
+      states[pivotIndex] = DEFAULT_STATE;
+      ++pivotIndex;
+      states[pivotIndex] = PIVOT_INDEX_STATE;
     }
   }
   await swap(arr, end, pivotIndex);
+  
+  for (let i = start; i < end; ++i) {
+    if (i != pivotIndex) {
+      states[i] = DEFAULT_STATE;
+    }
+  }  
   return pivotIndex;
 }
 
@@ -33,7 +53,7 @@ async function quicksortHelper(arr, start, end)
     return;
   }
   const index = await partition(arr, start, end);
-
+  states[index] = DEFAULT_STATE;
   await Promise.all([
       quicksortHelper(arr, start, index - 1),
       quicksortHelper(arr, index + 1, end)
@@ -51,6 +71,7 @@ function setup()
   segments = new Array(floor(width/segmentWidth));
   for (let i = 0; i < segments.length; ++i) {
     segments[i] = random(height);
+    states[i] = DEFAULT_STATE;
   }
   quicksort(segments);
 }
@@ -60,7 +81,13 @@ function draw()
   background(0);
   for (let i = 0; i < segments.length; ++i) {
     stroke(0);
-    fill(255);
+    if (states[i] == PIVOT_INDEX_STATE) {
+      fill(color('red'));
+    } else if (states[i] == CURRENT_PARTITION_STATE){
+      fill(color('green'));
+    } else {
+      fill(255);
+    }
     rect(i * segmentWidth, height-segments[i], segmentWidth, segments[i]);
   }
 }
