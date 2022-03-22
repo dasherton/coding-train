@@ -1,28 +1,25 @@
-/* A ray encapsulates a position and a direction
+/* A ray has a position and owns a direction vector. 
+ * The position of the ray is the same as its "parent"
+ * and is modified over time, therefore the Ray does not
+ * own its own copy of the position. It just references
+ * one.
  */
 
 class Ray {
-  constructor(x, y, dx, dy, len) {
-    this.pos = createVector(x, y);
-    this.dir = createVector(dx, dy);
+  constructor(pos, angle, len) {
+    this.pos = pos;
+    this.dir = p5.Vector.fromAngle(angle);
     this.length = len;
   }
-
+  
   draw() {
-    stroke(255);
     push();
-    translate(this.pos.x, this.pos.y);
+      translate(this.pos.x, this.pos.y);
+      stroke(255);
       ellipse(0, 0, 5, 5);
       line(0, 0, this.dir.x * this.length, this.dir.y * this.length);
     pop();
   }
-
-  lookAt(x, y)
-	{
-		this.dir.x = x - this.pos.x;
-		this.dir.y = y - this.pos.y;
-		this.dir.normalize();
-	}
 
   cast(wall) {
     const x1 = wall.start.x;

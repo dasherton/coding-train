@@ -3,24 +3,24 @@
  */
 
 let boundary;
-let ray;
+let particle;
+
+const ANGLE_VELOCITY = 10;
 
 function setup()
 {
   createCanvas(500, 500);
   boundary = new Boundary(width*0.75, height*0.25, width*0.75, height*0.75);
-  ray = new Ray(width*0.25, height*0.5, 1, 0, 25);
+  particle = new Particle(100, 100, ANGLE_VELOCITY);
 }
 
 function draw()
 {
   background(0);
-  boundary.draw();
-  ray.draw();
-  ray.lookAt(mouseX, mouseY);
 
-  let pt = ray.cast(boundary);
-  if (pt) {
-    ellipse(pt.x, pt.y, 5, 5);
-  }
+  particle.update(mouseX, mouseY);
+  particle.look(boundary);
+
+  boundary.draw();
+  particle.draw();
 }
