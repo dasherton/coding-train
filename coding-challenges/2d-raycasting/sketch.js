@@ -17,4 +17,10 @@ function draw()
   background(0);
   boundary.draw();
   ray.draw();
+  ray.lookAt(mouseX, mouseY);
+
+  let pt = ray.cast(boundary);
+  if (pt) {
+    ellipse(pt.x, pt.y, 5, 5);
+  }
 }
