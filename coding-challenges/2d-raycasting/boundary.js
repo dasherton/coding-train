@@ -1,3 +1,6 @@
+/* Encapsulates and draws a point from A -> B on the canvas
+ */
+
 class Boundary {
   constructor(x1, y1, x2, y2) {
     this.a = createVector(x1, y1);
